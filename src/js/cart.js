@@ -19,6 +19,7 @@ function renderCartContents() {
 
     // Insert total into HTML element
     document.getElementById('totalAmount').innerText = '$' + total.toFixed(2);
+  }
 }
 
 function cartItemTemplate(item) {
