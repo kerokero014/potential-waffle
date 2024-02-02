@@ -3,6 +3,7 @@ import { getLocalStorage } from './utils.mjs';
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
   // Check if there are items in the cart
   if  (cartItems.length > 0) {
@@ -18,7 +19,6 @@ function renderCartContents() {
 
     // Insert total into HTML element
     document.getElementById('totalAmount').innerText = '$' + total.toFixed(2);
-  }
 }
 
 function cartItemTemplate(item) {
