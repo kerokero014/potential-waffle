@@ -109,6 +109,38 @@ button {
 .cart:hover svg {
   fill: gray;
 }
+.cart.added svg {
+  fill: #ffcc00; /* Change the fill color or apply any other style for the animation */
+  animation: cartAddedAnimation 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes cartAddedAnimation {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  20% {
+    transform: translateY(-10px) scale(1.1);
+    filter: brightness(1.2);
+  }
+  40% {
+    transform: translateY(0) scale(0.9);
+    filter: brightness(1);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.05);
+    filter: brightness(1.1);
+  }
+  80% {
+    transform: translateY(0) scale(0.95);
+    filter: brightness(1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+
 
 /* End cart icon styles */
 
