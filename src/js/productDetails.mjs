@@ -23,6 +23,15 @@ function addToCart() {
   // then add the current product to the list
   cartContents.push(product);
   setLocalStorage("so-cart", cartContents);
+
+  // Add the 'added' class to the cart icon
+  const cartIcon = document.querySelector('.cart');
+  cartIcon.classList.add('added');
+
+  // Remove the 'added' class after a delay (you can adjust the delay as needed)
+  setTimeout(() => {
+    cartIcon.classList.remove('added');
+  }, 1000); // 1000 milliseconds = 1 second
 }
 
 
