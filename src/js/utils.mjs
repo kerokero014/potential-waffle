@@ -1,3 +1,6 @@
+import MainHeader from './components/MainHeader.svelte';
+import MainFooter from  './components/MainFooter.svelte';
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -7,7 +10,7 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  return JSON.parse(localStorage.getItem(key)) || [];
 }
 
 // save data to local storage
@@ -27,4 +30,17 @@ export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
+}
+
+// render out the header and footer components to the correct elements when called
+export function renderHeader() {
+  new MainHeader({
+    target: document.querySelector('#main-header')
+  });
+}
+
+export function renderFooter() {
+  new MainFooter({
+    target: document.querySelector('#main-footer')
+  });
 }
