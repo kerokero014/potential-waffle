@@ -1,34 +1,33 @@
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
 
-  document.querySelector('.product-list').innerHTML = htmlItems.join('');
+  const productList = document.querySelector('.product-list');
+  productList.innerHTML = htmlItems.join('');
+
   // Check if there are items in the cart
-  if  (cartItems.length > 0) {
+  if (cartItems.length > 0) {
     // Show the cart footer
-    document.querySelector('.cart-footer').classList.toggle('hide');
+    document.querySelector('.cart-footer').classList.remove('hide');
 
     // Calculate total
     var total = 0;
-    cartItems.forEach(function(item){
+    cartItems.forEach(function(item) {
       total += item.FinalPrice;
     });
-    console.log(total);
 
     // Insert total into HTML element
     document.getElementById('totalAmount').innerText = '$' + total.toFixed(2);
   }
 }
 
-function cartItemTemplate(item) {
+function cartItemTemplate(item, index) {
   const newItem = `<li class="cart-card divider">
+  <button class="remove-item" data-index="${index}">X</button>
   <a href="#" class="cart-card__image">
-    <img
-      src="${item.Image}"
-      alt="${item.Name}"
-    />
+    <img src="${item.Image}" alt="${item.Name}" />
   </a>
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
@@ -40,5 +39,24 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
+
+function removeFromCart(index) {
+  const cartItems = getLocalStorage('so-cart');
+  cartItems.splice(index, 1); // Remove item at the specified index
+  setLocalStorage('so-cart', cartItems); // Update local storage
+  renderCartContents(); // Re-render the cart contents
+
+  // If the cart is empty, hide the cart footer
+  if (cartItems.length === 0) {
+    document.querySelector('.cart-footer').classList.add('hide');
+  }
+}
+
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('remove-item')) {
+    const index = parseInt(event.target.getAttribute('data-index'));
+    removeFromCart(index);
+  }
+});
 
 renderCartContents();
