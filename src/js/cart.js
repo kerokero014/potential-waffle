@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { renderHeader, renderFooter } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
@@ -60,3 +61,5 @@ document.addEventListener('click', function (event) {
 });
 
 renderCartContents();
+renderHeader();
+renderFooter();
