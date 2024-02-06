@@ -39,15 +39,15 @@ function cartItemTemplate(item, index) {
 
   return newItem;
 }
-
+// Function to remove an item from the cart
 function removeFromCart(index) {
-  const cartItems = getLocalStorage('so-cart');
-  cartItems.splice(index, 1); // Remove item at the specified index
-  setLocalStorage('so-cart', cartItems); // Update local storage
-  renderCartContents(); // Re-render the cart contents
+  const cartItems = getLocalStorage('so-cart'); // Get the cart items from local storage
+  cartItems.splice(index, 1); // Remove item at the specified index from the array
+  setLocalStorage('so-cart', cartItems); // Update local storage 
+  renderCartContents(); // Re-render the cart contents 
 
-  // If the cart is empty, hide the cart footer
-  if (cartItems.length === 0) {
+  // If the cart is empty, hide the cart footer 
+  if (cartItems.length === 0) { 
     document.querySelector('.cart-footer').classList.add('hide');
   }
 }
