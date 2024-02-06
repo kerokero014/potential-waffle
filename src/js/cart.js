@@ -14,7 +14,7 @@ function renderCartContents() {
 
     // Calculate total
     var total = 0;
-    cartItems.forEach(function(item) {
+    cartItems.forEach(function (item) {
       total += item.FinalPrice;
     });
 
@@ -43,16 +43,16 @@ function cartItemTemplate(item, index) {
 function removeFromCart(index) {
   const cartItems = getLocalStorage('so-cart'); // Get the cart items from local storage
   cartItems.splice(index, 1); // Remove item at the specified index from the array
-  setLocalStorage('so-cart', cartItems); // Update local storage 
-  renderCartContents(); // Re-render the cart contents 
+  setLocalStorage('so-cart', cartItems); // Update local storage
+  renderCartContents(); // Re-render the cart contents
 
-  // If the cart is empty, hide the cart footer 
-  if (cartItems.length === 0) { 
+  // If the cart is empty, hide the cart footer
+  if (cartItems.length === 0) {
     document.querySelector('.cart-footer').classList.add('hide');
   }
 }
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
   if (event.target.classList.contains('remove-item')) {
     const index = parseInt(event.target.getAttribute('data-index'));
     removeFromCart(index);
