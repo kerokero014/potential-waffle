@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
 
 let product = {};
 
@@ -32,6 +33,8 @@ function addToCart() {
   setTimeout(() => {
     cartIcon.classList.remove('added');
   }, 1000); // 1000 milliseconds = 1 second
+  // update the visible cartCount
+  cartCount.set(cartContents.length);
 }
 
 

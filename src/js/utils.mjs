@@ -32,10 +32,16 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
+export function getCartCount() {
+  const count = getLocalStorage('so-cart').length ?? 0;
+  return count;
+}
+
 // render out the header and footer components to the correct elements when called
 export function renderHeader() {
   new MainHeader({
-    target: document.querySelector('#main-header')
+    target: document.querySelector('#main-header'),
+    props: {carCount: getCartCount()}
   });
 }
 
