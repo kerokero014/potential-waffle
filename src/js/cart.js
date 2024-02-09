@@ -5,7 +5,6 @@ function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
   const productList = document.querySelector('.product-list');
-  
   productList.innerHTML = htmlItems.join('');
 
   if (cartItems.length === 0) {
@@ -25,6 +24,10 @@ function renderCartContents() {
 
     // Insert total into HTML element
     document.getElementById('totalAmount').innerText = '$' + total.toFixed(2);
+
+    // Show or hide counterdot based on cart items
+    //const counterdot = document.getElementById('counterdot');
+
   }
 }
 
