@@ -236,6 +236,17 @@ button {
   grid-column: 3;
 }
 
+#counter {
+  position: relative; /* Position it relative to its parent */
+  top: -0.5em; /* Adjust vertical position */
+  font-size: 0.8em; /* Adjust font size */
+  background-color: #ff0000; /* Background color */
+  color: #ffffff; /* Text color */
+  padding: 0.2em 0.5em; /* Padding */
+  border-radius: 50%; /* Make it circular */
+  text-decoration: none;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
