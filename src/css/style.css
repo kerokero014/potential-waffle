@@ -236,6 +236,19 @@ button {
   grid-column: 3;
 }
 
+#counterdot {
+  position: relative;
+  top: -0.7em;
+  right: 0.7em;
+  font-size: 0.7em;
+  background-color: #ff0000e3;
+  color: #ffffff; 
+  padding: 0.2em 0.5em;
+  border-radius: 50%; 
+  text-decoration: none;
+  display: inline;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
