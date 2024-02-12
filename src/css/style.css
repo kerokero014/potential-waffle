@@ -249,6 +249,26 @@ button {
   display: inline;
 }
 
+/* Discounted ammount  */
+.discount {
+  color: red;
+  font-weight: bold;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+
+/* Discount indicator % percentage simbol */
+.discount-indicator {
+position: relative;
+top: auto;
+right: auto;
+background-color: rgb(139, 6, 6);
+color: #fff;
+padding: 5px;
+border-radius: 5px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

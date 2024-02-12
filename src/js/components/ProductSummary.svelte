@@ -1,5 +1,8 @@
 <script>
     export let product = {};
+
+     // Calculate discount percentage
+  $: discountPercentage = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
 </script>
   
   <section>
@@ -11,18 +14,9 @@
       {#if product.FinalPrice < product.SuggestedRetailPrice}
         <p class="discount">${product.FinalPrice}</p>
         <p class="strikethrough">${product.SuggestedRetailPrice}</p>
+        <span class="discount-indicator">-{discountPercentage}%</span>
       {:else}
         <p>${product.SuggestedRetailPrice}</p>
       {/if}
     </a>
   </section>
-
-<style>
-  .discount {
-    color: red;
-    font-weight: bold;
-  }
-  .strikethrough {
-    text-decoration: line-through;
-  }
-</style>
