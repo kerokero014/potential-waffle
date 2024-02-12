@@ -27,7 +27,6 @@ function renderCartContents() {
 
     // Show or hide counterdot based on cart items
     //const counterdot = document.getElementById('counterdot');
-
   }
 }
 
