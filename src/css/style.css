@@ -236,6 +236,11 @@ button {
   grid-column: 3;
 }
 
+.product-grid{
+  width: 9em;
+  display: flex;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
