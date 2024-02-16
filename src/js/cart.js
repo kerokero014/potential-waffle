@@ -16,10 +16,10 @@ function renderCartContents() {
     // Show the cart footer
     document.querySelector('.cart-footer').classList.remove('hide');
 
-    // Calculate total
+    // Calculate total and quantity
     var total = 0;
     cartItems.forEach(function (item) {
-      total += item.FinalPrice;
+      total += item.FinalPrice * item.Quantity;
     });
 
     // Insert total into HTML element
@@ -40,7 +40,7 @@ function cartItemTemplate(item, index) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">Quantity: ${item.Quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
 
