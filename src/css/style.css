@@ -270,7 +270,8 @@ button {
 .product-grid {
   display: flex;
   flex-direction: row;
-  margin: 0 12em;
+  margin: 0 10em;
+  gap: 2em
 }
 
 .product-grid li {
@@ -284,6 +285,12 @@ button {
   justify-content: center;
   display: flex;
   flex-direction: column;
+}
+
+.product-grid img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
 }
 
 .product-grid a {
