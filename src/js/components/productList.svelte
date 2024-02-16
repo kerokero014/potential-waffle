@@ -12,7 +12,7 @@
   <p>Loading</p>
 {:then data}
   <ul class="product-list">
-    {#each data.slice(0,4) as product}
+    {#each data as product}
       <li class="product-card"><ProductSummary {product} /></li>
     {/each}
   </ul>
