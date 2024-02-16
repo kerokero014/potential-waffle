@@ -28,6 +28,11 @@ function addToCart() {
   if (!cartContents) {
     cartContents = [];
   }
+
+  // add quantity input
+  let Quantity = document.getElementById("quantityInput");
+  product.Quantity = Quantity.value;
+
   // then add the current product to the list
   cartContents.push(product);
   setLocalStorage("so-cart", cartContents);
@@ -74,6 +79,10 @@ function productDetailsTemplate(product) {
     <p class="product__description">
       ${product.DescriptionHtmlSimple}
     </p>
+    <div class="product-detail__add">
+      <span>Quantity:</span>
+      <input id="quantityInput" type="number" min="1" value="1"/>
+    </div>
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
     </div>`;
