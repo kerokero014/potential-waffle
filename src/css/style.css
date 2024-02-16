@@ -235,12 +235,42 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
-
-.product-grid{
-  width: 9em;
-  display: flex;
+#counterdot {
+  position: relative;
+  top: -0.7em;
+  right: 0.7em;
+  font-size: 0.7em;
+  background-color: #ff0000e3;
+  color: #ffffff;
+  padding: 0.2em 0.5em;
+  border-radius: 50%;
+  text-decoration: none;
+  display: inline;
 }
 
+/* Discounted ammount  */
+.discount {
+  color: red;
+  font-weight: bold;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+
+/* Discount indicator % percentage simbol */
+.discount-indicator {
+position: relative;
+top: auto;
+right: auto;
+background-color: rgb(139, 6, 6);
+color: #fff;
+padding: 5px;
+border-radius: 5px;
+}
+.product-grid{
+  width: 9em;
+  display: flex; 
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

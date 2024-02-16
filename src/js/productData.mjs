@@ -18,3 +18,4 @@ export async function findProductById(id) {
   const product = await convertToJson(response);
   return product.Result;
 }
+
