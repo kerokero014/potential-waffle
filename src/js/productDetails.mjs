@@ -61,21 +61,23 @@ function productDetailsTemplate(product) {
     // Check if Colors array is defined and has at least one color
     const colorName = product.Colors && product.Colors.length > 0 ? product.Colors[0].ColorName : '';
 
+    
     return `<h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.Name}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>
-    <p class="product__color">${colorName}</p>
+    <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
       ${product.DescriptionHtmlSimple}
     </p>
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
     </div>`;
+
   }catch(error){console.log('An error occurred while fetching or processing product details:');
   return `<h1>An error occurred while fetching or processing product details</h1>`;
 }}
