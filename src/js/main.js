@@ -1,5 +1,9 @@
+import BannerView from './components/BannerView.svelte';
 import { renderHeader, renderFooter } from './utils.mjs';
-import ProductList from './components/ProductList.svelte';
+
+const app = new BannerView({
+  target: document.getElementById('app')
+});
 
 renderHeader();
 renderFooter();
