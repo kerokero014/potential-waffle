@@ -302,7 +302,6 @@ button {
   color: var(--dark-grey);
 }
 
-
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -316,7 +315,6 @@ button {
     grid-template-columns: 150px auto 15%;
   }
 }
-
 footer {
   font-size: var(--small-font);
   padding: 1em;
