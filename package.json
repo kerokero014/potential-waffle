@@ -24,7 +24,6 @@
     "svelte": "^4.2.9",
     "vite": "^5.0.0"
   },
-  
   "babel": {
     "presets": [
       "@babel/preset-env"
