@@ -302,6 +302,36 @@ button {
   color: var(--dark-grey);
 }
 
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+input[type='text'],
+input[type='number'],
+input[type='tel'] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+input[type='submit'] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+input[type='submit']:hover {
+  background-color: #0056b3;
+}
 
 @media screen and (min-width: 500px) {
   body {
