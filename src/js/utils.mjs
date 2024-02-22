@@ -19,11 +19,11 @@ export function setLocalStorage(key, data) {
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
 }
 
 export function getParam(param) {
@@ -33,7 +33,8 @@ export function getParam(param) {
 }
 
 export function getCartCount() {
-  const count = getLocalStorage('so-cart').length ?? 0;
+  const cart = getLocalStorage('so-cart');
+  const count = cart && cart.length > 0 ? cart.length : 0;
   return count;
 }
 
