@@ -17,16 +17,13 @@
     list = getLocalStorage(key);
     calculateItemSummary();
   };
-  // calculate order subtotal from the cart items
+
   const calculateItemSummary = function () {
-  if (list.length > 0) {
     // calculate the total of all the items in the cart
     const amounts = list.map((item) => item.FinalPrice);
-    itemTotal = amounts.reduce((sum, item) => sum + item, 0); // Provide an initial value of 0
-  } else {
-    itemTotal = 0; // Set itemTotal to 0 if list is empty
-  }
-};
+    itemTotal = amounts.reduce((sum, item) => sum + item);
+  };
+
 
   // calculate the shipping, tax, and orderTotal
   const calculateOrdertotal = function () {
@@ -91,7 +88,6 @@
     <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
     <label for="securityCode">Security Code:</label>
     <input type="text" id="securityCode" name="securityCode" maxlength="3" required />
-    <input type="submit" value="Submit" />
   </fieldset>
   <fieldset class="checkout-summary">
     <legend>Order Summary</legend>
@@ -114,5 +110,5 @@
       </li>
     </ul>
   </fieldset>
-  <button id="checkoutSubmit" type="submit">Checkout</button>
+  <button  id="checkoutSubmit" type="submit">Checkout</button>
 </form>

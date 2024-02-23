@@ -9,6 +9,7 @@
     <h2 class="card__name">{product.NameWithoutBrand}</h2>
     <p class="discount">${product.FinalPrice}</p>
     <p class="strikethrough">${product.SuggestedRetailPrice}</p>
+    <!--<button id="addToCart" data-id="${product.Id}">Add to Cart</button>-->
   </div>
 </div>
 
