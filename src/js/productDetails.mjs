@@ -61,9 +61,8 @@ function productDetailsTemplate(product) {
     }
 
     // Check if Colors array is defined and has at least one color
-    const colorName =
-      product.Colors && product.Colors.length > 0 ? product.Colors[0].ColorName : '';
-
+    const colorName = product.Colors && product.Colors.length > 0 ? product.Colors[0].ColorName : '';
+    const discountFlag = product.DiscountAvailabel ? '<span class="discount-flag">Discount Available</span>': '';
     return `<h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
@@ -72,6 +71,7 @@ function productDetailsTemplate(product) {
       alt="${product.Name}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>
+    ${discountFlag}
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
       ${product.DescriptionHtmlSimple}
