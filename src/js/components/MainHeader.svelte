@@ -42,17 +42,7 @@
 </div>
 
 <style>
-  /*.searchb {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }*/
-
-  .navbar{
+  .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
