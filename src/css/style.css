@@ -30,7 +30,17 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
-
+#myForm{
+  margin-bottom: 20px;
+}
+.success-message {
+  display: none;
+  color: green;
+  background-color: #afee9f;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
 .logo {
   line-height: 60px;
   width: 245px;
