@@ -30,6 +30,7 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+
 .logo {
   line-height: 60px;
   width: 245px;
@@ -358,6 +359,14 @@ input[type='tel'] {
 
 #checkoutSubmit:hover {
   background-color: #0056b3;
+}
+
+ion-icon {
+  font-size: 26px;
+  height: 40px;
+  width: 32px;
+  font-weight: bolder;
+  color: black;
 }
 
 @media screen and (min-width: 500px) {
