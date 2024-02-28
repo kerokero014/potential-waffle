@@ -6,7 +6,8 @@
   // Calculate discount percentage
   $: discountPercentage = Math.round(
     ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100
-  );
+  
+    );
 
   let overlayVisible = false;
 
