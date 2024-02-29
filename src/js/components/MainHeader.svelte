@@ -39,7 +39,6 @@
       <sup id="counterdot">{$cartCount > 0 ? $cartCount : ''}</sup>
     </a>
   </div>
-  <div>sign up</div>
 </div>
 
 <style>
