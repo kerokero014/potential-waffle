@@ -50,7 +50,9 @@
     return simplifiedItems;
   };
   const handleSubmit = async function (e) {
-    const json = formDataToJSON(this);
+   
+    try {
+      const json = formDataToJSON(this);
     // add totals, and item details
     json.orderDate = new Date();
     json.orderTotal = orderTotal;
@@ -58,7 +60,6 @@
     json.shipping = shipping;
     json.items = packageItems(list);
     console.log(json);
-    try {
       const res = await checkout(json);
       console.log(res);
     } catch (err) {

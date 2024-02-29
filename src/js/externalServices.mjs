@@ -1,9 +1,11 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
-function convertToJson(res) {
+async function convertToJson(res) {
+  const jsonResponse = res.json();
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error('Bad Response');
+    //throw new Error('Bad Response');
+    throw { name: 'servicesError', message: jsonResponse };
   }
 }
 
@@ -19,12 +21,18 @@ export async function findProductById(id) {
   return product.Result;
 }
 export async function checkout(payload) {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  };
-  return await fetch(baseURL + 'checkout/', options).then(convertToJson);
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    };
+
+    return await fetch(baseURL + 'checkout/', options).then(convertToJson);
+
+  } catch (err) {
+    console.log(err);
+  }
 }
