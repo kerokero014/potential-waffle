@@ -1,6 +1,6 @@
 <script>
-  import { getLocalStorage, formDataToJSON } from '../utils.mjs';
-  import { checkout } from "../externalServices.mjs"
+  import { getLocalStorage, formDataToJSON, alertMessage, removeAllAlerts, setLocalStorage } from '../utils.mjs';
+  import { checkout } from '../externalServices.mjs';
 
   // props
   export let key = '';
@@ -24,17 +24,12 @@
     itemTotal = amounts.reduce((sum, item) => sum + item);
   };
 
-
   // calculate the shipping, tax, and orderTotal
   const calculateOrdertotal = function () {
     shipping = 10 + (list.length - 1) * 2;
     tax = (itemTotal * 0.06).toFixed(2);
-    console.log(tax)
-    orderTotal = (
-      parseFloat(itemTotal) +
-      parseFloat(shipping) +
-      parseFloat(tax)
-    ).toFixed(2);
+    console.log(tax);
+    orderTotal = (parseFloat(itemTotal) + parseFloat(shipping) + parseFloat(tax)).toFixed(2);
   };
   // transform the current cart contents to a simpler format keeping just the things we need to send to checkout
   const packageItems = function (items) {
@@ -50,19 +45,24 @@
     return simplifiedItems;
   };
   const handleSubmit = async function (e) {
-   
+    const json = formDataToJSON(this);
+      // add totals, and item details
+      json.orderDate = new Date();
+      json.orderTotal = orderTotal;
+      json.tax = tax;
+      json.shipping = shipping;
+      json.items = packageItems(list);
+      console.log(json);
     try {
-      const json = formDataToJSON(this);
-    // add totals, and item details
-    json.orderDate = new Date();
-    json.orderTotal = orderTotal;
-    json.tax = tax;
-    json.shipping = shipping;
-    json.items = packageItems(list);
-    console.log(json);
       const res = await checkout(json);
       console.log(res);
+      setLocalStorage("so-cart",[])
+      //const alert = await alertMessage();
     } catch (err) {
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
       console.log(err);
     }
   };
@@ -111,5 +111,5 @@
       </li>
     </ul>
   </fieldset>
-  <button  id="checkoutSubmit" type="submit">Checkout</button>
+  <button id="checkoutSubmit" type="submit">Checkout</button>
 </form>

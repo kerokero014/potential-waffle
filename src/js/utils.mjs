@@ -1,5 +1,6 @@
 import MainHeader from './components/MainHeader.svelte';
 import MainFooter from  './components/MainFooter.svelte';
+import Alert from './components/Alert.svelte';
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -58,6 +59,28 @@ export function formDataToJSON(formElement) {
   formData.forEach(function (value, key) {
     convertedJSON[key] = value;
   });
+  
  
   return convertedJSON;
 }
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = new Alert({
+      target: document.querySelector("body"),
+      anchor: document.querySelector("main"),
+      props: {
+      message,
+      },
+  });
+  // make sure they see the alert by scrolling to the top of the window
+  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+  if (scroll) window.scrollTo(0, 0);
+  
+  // left this here to show how you could remove the alert automatically after a certain amount of time.
+  // setTimeout(function () {
+  //   alert.$destroy();
+  // }, duration);
+  };
+  export function removeAllAlerts() {
+    const alerts = document.querySelectorAll(".alert");
+    alerts.forEach((alert) => alert.remove());
+  };
