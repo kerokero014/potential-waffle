@@ -1,5 +1,11 @@
 <script>
-  import { getLocalStorage, formDataToJSON, alertMessage, removeAllAlerts, setLocalStorage } from '../utils.mjs';
+  import {
+    getLocalStorage,
+    formDataToJSON,
+    alertMessage,
+    removeAllAlerts,
+    setLocalStorage
+  } from '../utils.mjs';
   import { checkout } from '../externalServices.mjs';
 
   // props
@@ -46,17 +52,17 @@
   };
   const handleSubmit = async function (e) {
     const json = formDataToJSON(this);
-      // add totals, and item details
-      json.orderDate = new Date();
-      json.orderTotal = orderTotal;
-      json.tax = tax;
-      json.shipping = shipping;
-      json.items = packageItems(list);
-      console.log(json);
+    // add totals, and item details
+    json.orderDate = new Date();
+    json.orderTotal = orderTotal;
+    json.tax = tax;
+    json.shipping = shipping;
+    json.items = packageItems(list);
+    console.log(json);
     try {
       const res = await checkout(json);
       console.log(res);
-      setLocalStorage("so-cart",[])
+      setLocalStorage('so-cart', []);
       //const alert = await alertMessage();
     } catch (err) {
       removeAllAlerts();

@@ -17,7 +17,7 @@
   // Load cartItems from local storage
   let cartItems = getLocalStorage('so-cart');
   let total = 0;
-
+  console.log(cartItems);
   // Calculate total price
   $: {
     total = cartItems.reduce((acc, item) => acc + item.FinalPrice * item.Quantity, 0);
@@ -55,7 +55,7 @@
       <li class="cart-card divider">
         <button class="remove-item" data-index={index}>X</button>
         <a href="/product_pages/index.html?productid={item.Id}" class="cart-card__image">
-          <img src={item.Images.PrimaryMedium} alt={item.Name} />
+          <img src={item.Images.PrimaryExtraLarge} alt={item.Name} />
         </a>
         <div>
           <h2 class="card__name">{item.Name}</h2>

@@ -18,14 +18,18 @@
   function sortProducts() {
     // Sort products array based on sortBy criteria
     if (sortBy === 'name') {
-        sortedProductList  = productList.sort((a, b) => {return a.NameWithoutBrand.localeCompare(b.NameWithoutBrand)});
-        // console.log(sortedProductList);
-        // return a.name.localeCompare(b.name);
-      } else if (sortBy === 'price') {
-        sortedProductList = productList.sort((a, b) => {return a.FinalPrice - b.FinalPrice});
-        // console.log(sortedProductList);
-        // return a.price - b.price;
-      }
+      sortedProductList = productList.sort((a, b) => {
+        return a.NameWithoutBrand.localeCompare(b.NameWithoutBrand);
+      });
+      // console.log(sortedProductList);
+      // return a.name.localeCompare(b.name);
+    } else if (sortBy === 'price') {
+      sortedProductList = productList.sort((a, b) => {
+        return a.FinalPrice - b.FinalPrice;
+      });
+      // console.log(sortedProductList);
+      // return a.price - b.price;
+    }
   }
 
   onMount(getProducts);
