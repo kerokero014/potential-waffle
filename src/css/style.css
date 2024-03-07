@@ -325,6 +325,7 @@ form {
   background-color: #f9f9f9;
 }
 input[type='text'],
+input[type='password'],
 input[type='number'],
 input[type='tel'] {
   width: 100%;
