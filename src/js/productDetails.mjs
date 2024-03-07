@@ -6,18 +6,20 @@ let product = {};
 
 export default async function productDetails(productId, selector) {
   try {
-    if (!product) {
-      console.log('Product is undefined or null');
-    }
     // get the details for the current product. findProductById will return a promise! use await or .then() to process it
     product = await findProductById(productId);
+    
     // once we have the product details we can render out the HTML
     const el = document.querySelector(selector);
     el.insertAdjacentHTML('afterBegin', productDetailsTemplate(product));
+    
     // once the HTML is rendered we can add a listener to Add to Cart button
     document.getElementById('addToCart').addEventListener('click', addToCart);
+    
+    // Add event listener to Wishlist button
+    document.getElementById('wishlistBtn').addEventListener('click', toggleWishlist);
   } catch (error) {
-    console.log('An error occurred while fetching or processing product details:');
+    console.log('An error occurred while fetching or processing product details:', error);
   }
 }
 
@@ -47,6 +49,8 @@ function addToCart() {
   // update the visible cartCount
   cartCount.set(cartContents.length);
 }
+
+
 
 function productDetailsTemplate(product) {
   try {
@@ -89,6 +93,36 @@ function productDetailsTemplate(product) {
     console.log('An error occurred while fetching or processing product details:');
     return `<h1>An error occurred while fetching or processing product details</h1>`;
   }
-}
+  const wishlistIconClass = isProductInWishlist(product.id) ? 'added' : '';
+  return `
+    <!-- Your existing product details HTML -->
 
+    <!-- Wishlist button -->
+    <button id="wishlistBtn" class="wishlist ${wishlistIconClass}">Add to Wishlist</button>
+    `;
+    console.log('An error occurred while fetching or processing product details:', error);
+    return `<h1>An error occurred while fetching or processing product details</h1>`;
+  } 
 
+  function toggleWishlist() {
+    try {
+      const wishlistIcon = document.getElementById('wishlistBtn');
+      if (wishlistIcon.classList.contains('added')) {
+        // If item is already in wishlist, remove it
+        removeFromWishlist(product.id);
+        wishlistIcon.classList.remove('added');
+      } else {
+        // If item is not in wishlist, add it
+        addToWishlist(product.id);
+        wishlistIcon.classList.add('added');
+      }
+    } catch (error) {
+      console.log('An error occurred while adding/removing from wishlist:', error);
+    }
+  }
+
+  function isProductInWishlist(productId) {
+    // Check if the product is in the wishlist
+    const wishlistItems = getLocalStorage('wishlist') || [];
+    return wishlistItems.includes(productId);
+  }
