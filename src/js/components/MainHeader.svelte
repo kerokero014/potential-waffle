@@ -1,16 +1,24 @@
 <script>
   import { cartCount } from '../stores.mjs';
+  //import Breadcrumbs from '../components/Breadcrumbs.svelte';
 </script>
 
 <div class="navbar">
   <div class="logo">
-    <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+    <img src="/images/noun_Tent_2517.svg" alt="Logo of a tent" />
     <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
   </div>
   <div class="search-box">
     <button class="btn-search"><ion-icon name="search-outline"></ion-icon></button>
     <input type="text" class="input-search" placeholder="Type to Search..." />
   </div>
+  <!--<Breadcrumbs
+    items={[
+      { href: '/', text: 'Home' },
+      { href: '/products', text: 'Products' },
+      { text: 'Product Details' }
+    ]}
+  />-->
   <div class="cart">
     <a href="/cart/index.html">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
