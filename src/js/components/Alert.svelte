@@ -7,7 +7,7 @@
 
 <div class="alert">
   <p>{message}</p>
-  <span on:click={handleClick}>X</span>
+  <button type="button" on:click={handleClick} aria-label="Close">X</button>
 </div>
 
 <style>
