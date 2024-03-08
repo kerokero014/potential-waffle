@@ -1,5 +1,6 @@
 import { loginRequest } from './externalServices.mjs';
-import { alertMessage, getLocalStorage, setLocalStorage } from './utils.mjs';
+import { alertMessage, setLocalStorage, getLocalStorage } from './utils.mjs';
+import { jwt_decode } from 'jwt-decode';
 
 const tokenKey = 'so-token';
 export async function login(creds, redirect = '/') {
@@ -34,4 +35,21 @@ export function isTokenValid(token) {
   } else return false;
 }
 
-export function checkLogin() {}
+export function checkLogin() {
+  // get the token from localStorage
+  const token = getLocalStorage(tokenKey);
+  // use the isTokenValid function to check the validity of our token
+  const valid = isTokenValid(token);
+  // if the token is NOT valid
+  if (!valid) {
+    //remove stored token
+    localStorage.removeItem(tokenKey);
+    // redirect to login while sending the current URL along as a parameter
+    // grab the current location from the browser
+    const location = window.location;
+    // check out what location contains
+    console.log(location);
+    // redirect by updating window.location =
+    window.location = `/login/index.html?redirect=${location.pathname}`;
+  } else return token; //if they are logged in then just return the token.
+}
