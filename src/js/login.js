@@ -6,11 +6,11 @@ renderFooter();
 
 const redirect = getParam('redirect');
 
-let loginForm =  document.querySelector('#loginForm');
+let loginForm = document.querySelector('#loginForm');
 
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let username = document.getElementById('username').value;
-    let password =  document.getElementById('password').value;
-    login({username, password}, redirect);
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let username = document.getElementById('username').value;
+  let password = document.getElementById('password').value;
+  login({ username, password }, redirect);
 });

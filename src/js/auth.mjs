@@ -1,6 +1,6 @@
 import { loginRequest } from './externalServices.mjs';
 import { alertMessage, setLocalStorage, getLocalStorage } from './utils.mjs';
-import { jwt_decode } from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 
 const tokenKey = 'so-token';
 export async function login(creds, redirect = '/') {
