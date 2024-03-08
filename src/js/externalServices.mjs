@@ -21,17 +21,15 @@ export async function findProductById(id) {
   return product.Result;
 }
 export async function checkout(payload) {
- 
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    };
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  };
 
-    return await fetch(baseURL + 'checkout/', options).then(convertToJson);
-
+  return await fetch(baseURL + 'checkout/', options).then(convertToJson);
 }
 
 export function loginRequest(user) {
@@ -41,8 +39,20 @@ export function loginRequest(user) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(user)
-  }
+  };
 
-  const response  = fetch(baseURL + "login", options).then(convertToJson);
+  const response = fetch(baseURL + 'login', options).then(convertToJson);
   return response.accessToken;
+}
+
+export async function getOrders(token) {
+  const options = {
+    method: 'GET',
+    // the server will reject our request if we don't include the Authorization header with a valid token!
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  const response = await fetch(baseURL + 'orders', options).then(convertToJson);
+  return response;
 }
