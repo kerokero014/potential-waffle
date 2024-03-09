@@ -383,6 +383,40 @@ ion-icon {
   color: black;
 }
 
+.carousel {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+.carousel-inner {
+  display: flex;
+}
+.carousel-item {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.carousel-item.active {
+  display: flex;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 2rem;
+  color: #000;
+  z-index: 1;
+}
+.product-card__price {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
