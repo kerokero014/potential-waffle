@@ -147,13 +147,12 @@ function showSlide(n) {
 }
 
 function nextSlide() {
-  showSlide(slideIndex += 1);
+  showSlide((slideIndex += 1));
 }
 
 function prevSlide() {
-  showSlide(slideIndex -= 1);
+  showSlide((slideIndex -= 1));
 }
-
 
 function toggleWishlist() {
   try {
