@@ -88,7 +88,7 @@ function productDetailsTemplate(product) {
             ).join('')}
           </div>
           <a class="carousel-control-prev" onclick="prevSlide()" href="#">❮</a>
-          <a class="carousel-control-next" onclick="nextSlide()" href="#">❯</a>
+          <a class="carousel-control-next" onclick="nextSlide()" href="#"> </a>
         </div>
       `;
     } else {
