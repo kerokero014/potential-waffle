@@ -383,35 +383,37 @@ ion-icon {
   color: black;
 }
 
+.carousel::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: #faf8f857; /* Color of the track */
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #4f4e4e;
+  border-radius: 10px; /* Roundness of the scroll thumb */
+}
+
+.carousel::-webkit-scrollbar-thumb:hover {
+  background: #7ba5b5; /* Color of the scroll thumb on hover */
+}
+
 .carousel {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-}
-.carousel-inner {
   display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-behavior: smooth; /* Smooth scrolling on other browsers */
 }
-.carousel-item {
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-.carousel-item.active {
-  display: flex;
-}
-.carousel-control-prev,
-.carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 2rem;
-  color: #000;
-  z-index: 1;
-}
-.product-card__price {
-  font-size: 1.2rem;
-  font-weight: bold;
+
+.carousel img {
+  scroll-snap-align: start;
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures images cover the full area */
+  transition: transform 0.5s ease; /* Smooth transition for hover effect */
 }
 
 @media screen and (min-width: 500px) {

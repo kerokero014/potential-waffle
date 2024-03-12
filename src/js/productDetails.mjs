@@ -55,67 +55,103 @@ function productDetailsTemplate(product) {
     // Check if product is defined
     if (!product) {
       console.log('Product is undefined or null');
+      return `<h1>An error occurred while fetching or processing product details</h1>`;
     }
 
     // Check if Brand is defined
     if (!product.Brand || !product.Brand.Name) {
       console.log('Product brand or brand name is undefined');
+      return `<h1>An error occurred while fetching or processing product details</h1>`;
     }
+
     let discountPercentage = Math.round(
       ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100
-      );
-    // Check if Colors array is defined and has at least one color
-    const colorName = product.Colors && product.Colors.length > 0 ? product.Colors[0].ColorName : '';
-    //const discountFlag = product.DiscountAvailabel ? '<span class="discount-flag">Discount Available</span>': '';
-    return `<h3>${product.Brand.Name}</h3>
-    <h2 class="divider">${product.NameWithoutBrand}</h2>
-    <img
-      class="divider"
-      src="${product.Images.PrimaryExtraLarge}"
-      alt="${product.Name}"
-    />
-    <p class="product-card__price">$${product.FinalPrice}</p>
-    <span class="discount-indicator">-${discountPercentage}%</span>
-    <p class="product__color">${product.Colors[0].ColorName}</p>
-    <p class="product__description">
-      ${product.DescriptionHtmlSimple}
-    </p>
-    <div class="product-detail__add">
-      <span>Quantity:</span>
-      <input id="quantityInput" type="number" min="1" value="1"/>
-    </div>
-    <div class="product-detail__add">
-      <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-    </div>`;
-  } catch (error) {
-    console.log('An error occurred while fetching or processing product details:');
-    return `<h1>An error occurred while fetching or processing product details</h1>`;
-  }
-  const wishlistIconClass = isProductInWishlist(product.id) ? 'added' : '';
-  return `
-    <!-- Your existing product details HTML -->
+    );
 
-    <!-- Wishlist button -->
-    <button id="wishlistBtn" class="wishlist ${wishlistIconClass}">Add to Wishlist</button>
+    // Check if Colors array is defined and has at least one color
+    const colorName =
+      product.Colors && product.Colors.length > 0 ? product.Colors[0].ColorName : '';
+
+    // Construct carousel HTML
+    let carouselImages = '';
+    if (product.Images && product.Images.ExtraImages && product.Images.ExtraImages.length > 0) {
+      carouselImages = `
+        <img src="${product.Images.PrimaryExtraLarge}" alt="${product.Name}" />
+        ${product.Images.ExtraImages.map(
+          (image) => `
+          <img src="${image.Src}" alt="${product.Name}" />
+        `
+        ).join('')}
+      `;
+    }
+
+    return `
+      <div class="carousel">
+        ${carouselImages}
+      </div>
+      <h3>${product.Brand.Name}</h3>
+      <h2 class="divider">${product.NameWithoutBrand}</h2>
+      <p class="product-card__price">$${product.FinalPrice}</p>
+      <span class="discount-indicator">-${discountPercentage}%</span>
+      <p class="product__color">${colorName}</p>
+      <p class="product__description">
+        ${product.DescriptionHtmlSimple}
+      </p>
+      <div class="product-detail__add">
+        <span>Quantity:</span>
+        <input id="quantityInput" type="number" min="1" value="1"/>
+      </div>
+      <div class="product-detail__add">
+        <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+      </div>
+      
+      <!-- Wishlist button -->
+      <button id="wishlistBtn" class="wishlist ${
+        isProductInWishlist(product.Id) ? 'added' : ''
+      }">Add to Wishlist</button>
     `;
+  } catch (error) {
     console.log('An error occurred while fetching or processing product details:', error);
     return `<h1>An error occurred while fetching or processing product details</h1>`;
-  } 
+  }
+}
 
+function addToWishlist(productId) {
+  // Get current wishlist items from local storage
+  let wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
 
+  // Add the productId to the wishlist if it's not already there
+  if (!wishlistItems.includes(productId)) {
+    wishlistItems.push(productId);
+    // Update the wishlist items in local storage
+    localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
+  }
+}
 
-function toggleWishlist() {
+function removeFromWishlist(productId) {
+  // Get current wishlist items from local storage
+  let wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+  // Remove the productId from the wishlist
+  wishlistItems = wishlistItems.filter((item) => item !== productId);
+
+  // Update the wishlist items in local storage
+  localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
+}
+
+function toggleWishlist(productId) {
   try {
     const wishlistIcon = document.getElementById('wishlistBtn');
     if (wishlistIcon.classList.contains('added')) {
       // If item is already in wishlist, remove it
-      removeFromWishlist(product.id);
+      removeFromWishlist(productId);
       wishlistIcon.classList.remove('added');
     } else {
       // If item is not in wishlist, add it
-      addToWishlist(product.id);
+      addToWishlist(productId);
       wishlistIcon.classList.add('added');
     }
+    console.log('Updated wishlist items:', getLocalStorage('wishlist'));
   } catch (error) {
     console.log('An error occurred while adding/removing from wishlist:', error);
   }
