@@ -53,12 +53,12 @@
       <sup id="counterdot">{$cartCount > 0 ? $cartCount : ''}</sup>
     </a>
   </div>
-  <div class="login">
+  <div>
     <!--<a href="login/index.html">log in</a>-->
     {#if userName}
-    <a href="/">Welcome, {userName}!</a>
+    <a class="login" href="/">Welcome, {userName}!</a>
     {:else}
-    <a href="login/index.html">log in</a>
+    <a class="login" href="login/index.html">Log in</a>
     {/if}
   </div>
 </div>

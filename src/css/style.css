@@ -127,7 +127,15 @@ button {
   fill: #ffcc00; /* Change the fill color or apply any other style for the animation */
   animation: cartAddedAnimation 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-
+.login{
+  text-decoration: none;
+  padding: 15px;
+  color: #000000;
+  font-size: 23px;
+}
+.login:hover {
+  color: rgb(109, 114, 125);
+}
 @keyframes cartAddedAnimation {
   0% {
     transform: translateY(0) scale(1);
