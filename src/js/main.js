@@ -1,5 +1,5 @@
 import BannerView from './components/BannerView.svelte';
-import { renderHeader, renderFooter } from './utils.mjs';
+import { renderHeader, renderFooter,getUserName } from './utils.mjs';
 import { renderAlerts } from './alert.js';
 
 const app = new BannerView({
@@ -8,6 +8,8 @@ const app = new BannerView({
 
 renderHeader();
 renderFooter();
+getUserName();
+//displayUserName();
 
 // Render alerts
 const alertsContainer = document.getElementById('alerts');

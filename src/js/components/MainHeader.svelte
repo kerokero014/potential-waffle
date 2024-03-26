@@ -1,5 +1,11 @@
 <script>
   import { cartCount } from '../stores.mjs';
+  import * as jwt_decode from 'jwt-decode'; 
+  import { getUserName } from '../utils.mjs';
+
+    // Assuming you have access to the token in your component
+    const token = localStorage.getItem('so-token');
+    const userName = getUserName(token);
   //import Breadcrumbs from '../components/Breadcrumbs.svelte';
 </script>
 
@@ -46,6 +52,14 @@
       </svg>
       <sup id="counterdot">{$cartCount > 0 ? $cartCount : ''}</sup>
     </a>
+  </div>
+  <div class="login">
+    <!--<a href="login/index.html">log in</a>-->
+    {#if userName}
+    <a href="/">Welcome, {userName}!</a>
+    {:else}
+    <a href="login/index.html">log in</a>
+    {/if}
   </div>
 </div>
 

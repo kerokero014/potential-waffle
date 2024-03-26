@@ -33,6 +33,7 @@ export async function checkout(payload) {
 }
 
 export function loginRequest(user) {
+  console.log(user);
   const options = {
     method: 'POST',
     headers: {

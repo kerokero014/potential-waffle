@@ -1,7 +1,8 @@
 
 import { loginRequest } from "./externalServices.mjs";
 import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
-import jwt_decode from "jwt-decode";
+import * as jwt_decode from 'jwt-decode';
+ 
 
 const tokenKey = "so-token";
 
@@ -49,7 +50,9 @@ export function checkLogin() {
 
 export async function login(creds, redirect = "/") {
     try {
-        const token = await loginRequest(creds);
+        console.log(creds);
+        //const token = await loginRequest(creds);
+        const token = [creds];
         setLocalStorage(tokenKey, token);
         // because of the default arg provided above...if no redirect is provided send them Home.
         window.location = redirect;

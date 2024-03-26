@@ -1,7 +1,30 @@
 import MainHeader from './components/MainHeader.svelte';
 import MainFooter from  './components/MainFooter.svelte';
 import Alert from './components/Alert.svelte';
+import * as jwt_decode from 'jwt-decode'; 
+// Function to get the user's name from the authentication token
+export function getUserName() {
+  // Retrieve the token from localStorage
+  const token = getLocalStorage('so-token');
+  const nameFromLocalStorage = localStorage.getItem('so-token')  
+  const tokenData = JSON.parse(nameFromLocalStorage);
 
+  // Check if token exists
+  if (tokenData) {
+    // Decode the token to extract user information
+      //const decodedToken = jwt_decode(token);
+
+      // Assuming the user's name is stored in the token under the key 'name'
+      //const userName = decodedToken.username;
+
+      // Return the user's name
+      console.log("name", tokenData[0].username)
+      return tokenData[0].username;
+  } else {
+      // If token doesn't exist, return null or handle the case appropriately
+      return null;
+  }
+}
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
