@@ -19,3 +19,10 @@ export async function findProductById(id) {
   return product.Result;
 }
 
+//findproduct by name
+export async function findProductByName(name) {
+  const response = await fetch(baseURL + `products/search/${name}`);
+  const product = await convertToJson(response);
+  return product.Result;
+}
+
