@@ -57,6 +57,11 @@ function productDetailsTemplate(product) {
       console.log('Product is undefined or null');
       return `<h1>An error occurred while fetching or processing product details</h1>`;
     }
+    // Check if Colors array is defined and has at least one color
+    const colorNames =
+    product.Colors && product.Colors.length > 0
+      ? product.Colors.map(color => `<span class="color-name">${color.ColorName}</span>`).join(', ')
+      : 'No colors available';
 
     // Check if Brand is defined
     if (!product.Brand || !product.Brand.Name) {
@@ -67,10 +72,6 @@ function productDetailsTemplate(product) {
     let discountPercentage = Math.round(
       ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100
     );
-
-    // Check if Colors array is defined and has at least one color
-    const colorName =
-      product.Colors && product.Colors.length > 0 ? product.Colors[0].ColorName : '';
 
     // Construct carousel HTML
     let carouselImages = `<img src="${product.Images.PrimaryExtraLarge}" alt="${product.Name}" />`;
@@ -91,10 +92,10 @@ function productDetailsTemplate(product) {
       <h2 class="divider">${product.NameWithoutBrand}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p>
       <span class="discount-indicator">-${discountPercentage}%</span>
-      <p class="product__color">${colorName}</p>
       <p class="product__description">
         ${product.DescriptionHtmlSimple}
       </p>
+      <p class="product__colors">Available colors: ${colorNames}</p>
       <div class="product-detail__add">
         <span>Quantity:</span>
         <input id="quantityInput" type="number" min="1" value="1"/>
