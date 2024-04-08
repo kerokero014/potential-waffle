@@ -60,3 +60,11 @@ export async function getOrders(token) {
   const response = await fetch(baseURL + "orders", options).then(convertToJson);
   return response;
 }
+
+//request items by name autocomplete
+export async function getItemsByName(name) {
+  const response = await fetch(baseURL + `products/search/${name}`);
+  const data = await convertToJson(response);
+  return data.Result;
+}
+

@@ -2,12 +2,13 @@
   import { cartCount } from '../stores.mjs';
   import * as jwt_decode from 'jwt-decode';
   import { getUserName } from '../utils.mjs';
-  import { findProductByName } from '../productData.mjs';
+  import { getItemsByName } from '../externalServices.mjs';
 
   let search = '';
 
-  const handleSearch = () => {
-    findProductByName(search);
+  const handleSearch = async () => {
+    const items = await getItemsByName(search);
+    console.log(items);
   };
 
   // Assuming you have access to the token in your component
@@ -22,8 +23,16 @@
     <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
   </div>
   <div class="search-box">
-    <button class="btn-search" on:click={handleSearch}><ion-icon name="search-outline"></ion-icon></button>
-    <input type="text" bind:value={search} class="input-search" placeholder="Type to Search..." on:input={handleSearch} />
+    <button class="btn-search" on:click={handleSearch}
+      ><ion-icon name="search-outline"></ion-icon></button
+    >
+    <input
+      type="text"
+      bind:value={search}
+      class="input-search"
+      placeholder="Type to Search..."
+      on:input={handleSearch}
+    />
   </div>
   <!--<Breadcrumbs
     items={[
