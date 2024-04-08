@@ -73,16 +73,14 @@ function productDetailsTemplate(product) {
       product.Colors && product.Colors.length > 0 ? product.Colors[0].ColorName : '';
 
     // Construct carousel HTML
-    let carouselImages = '';
+    let carouselImages = `<img src="${product.Images.PrimaryExtraLarge}" alt="${product.Name}" />`;
+
     if (product.Images && product.Images.ExtraImages && product.Images.ExtraImages.length > 0) {
-      carouselImages = `
-        <img src="${product.Images.PrimaryExtraLarge}" alt="${product.Name}" />
-        ${product.Images.ExtraImages.map(
-          (image) => `
-          <img src="${image.Src}" alt="${product.Name}" />
-        `
-        ).join('')}
-      `;
+      carouselImages += product.Images.ExtraImages.map(
+        (image) => `
+        <img src="${image.Src}" alt="${product.Name}" />
+      `
+      ).join('');
     }
 
     return `
