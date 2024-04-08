@@ -59,9 +59,11 @@ function productDetailsTemplate(product) {
     }
     // Check if Colors array is defined and has at least one color
     const colorNames =
-    product.Colors && product.Colors.length > 0
-      ? product.Colors.map(color => `<span class="color-name">${color.ColorName}</span>`).join(', ')
-      : 'No colors available';
+      product.Colors && product.Colors.length > 0
+        ? product.Colors.map(
+            (color) => `<option value="${color.ColorName}">${color.ColorName}</option>`
+          ).join('')
+        : '<option value="">No colors available</option>';
 
     // Check if Brand is defined
     if (!product.Brand || !product.Brand.Name) {
@@ -95,7 +97,9 @@ function productDetailsTemplate(product) {
       <p class="product__description">
         ${product.DescriptionHtmlSimple}
       </p>
-      <p class="product__colors">Available colors: ${colorNames}</p>
+      <select id="colorSelect">
+        ${colorNames}
+      </select>
       <div class="product-detail__add">
         <span>Quantity:</span>
         <input id="quantityInput" type="number" min="1" value="1"/>
