@@ -34,13 +34,7 @@
       on:input={handleSearch}
     />
   </div>
-  <!--<Breadcrumbs
-    items={[
-      { href: '/', text: 'Home' },
-      { href: '/products', text: 'Products' },
-      { text: 'Product Details' }
-    ]}
-  />-->
+
   <div class="cart">
     <a href="/cart/index.html">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -78,6 +72,7 @@
     {/if}
   </div>
 </div>
+
 
 <style>
   .navbar {
