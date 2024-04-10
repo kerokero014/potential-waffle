@@ -1,14 +1,18 @@
 <script>
+  import { writable } from 'svelte/store';
   import { cartCount } from '../stores.mjs';
   import * as jwt_decode from 'jwt-decode';
   import { getUserName } from '../utils.mjs';
   import { getItemsByName } from '../externalServices.mjs';
 
   let search = '';
+  let searchResults = writable([]);
 
   const handleSearch = async () => {
     const items = await getItemsByName(search);
     console.log(items);
+
+    searchResults.set(items);
   };
 
   // Assuming you have access to the token in your component
@@ -72,7 +76,6 @@
     {/if}
   </div>
 </div>
-
 
 <style>
   .navbar {
